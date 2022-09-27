@@ -4,7 +4,7 @@ using System.Text;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Concrete.EntityFramework
 {
     public class ToyWorldContext : DbContext
     {
@@ -16,7 +16,7 @@ namespace DataAccess.Abstract
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Customer> Customers{ get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
     }
 }

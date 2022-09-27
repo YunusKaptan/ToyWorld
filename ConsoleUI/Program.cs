@@ -8,11 +8,11 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-            foreach (var product in productManager.GetAllByCategoryId(2))
+            foreach (var category in categoryManager.GetAll())
             {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(category.CategoryName);
             }
         }
     }

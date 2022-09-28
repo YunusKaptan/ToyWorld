@@ -2,19 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Results;
 using Entities.DTOs;
 
 namespace Business.Abstract
 {
     public interface IProductService
     {
-        List<Product> GetAll();
-        List<Product> GetAllByCategoryId(int categoryId);
-        List<ProductDetailDto> GetProductDetails();
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(Product product);
-        Product GetById(int productId);
+        IDataResult<List<Product>> GetAll();
+        IDataResult<List<Product>> GetAllByCategoryId(int categoryId);
+        IDataResult<List<ProductDetailDto>> GetProductDetails();
+        IResult Add(Product product);
+        IResult Update(Product product);
+        IResult Delete(Product product);
+        IDataResult<Product> GetById(int productId);
 
     }
 }

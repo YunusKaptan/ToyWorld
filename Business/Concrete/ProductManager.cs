@@ -31,5 +31,20 @@ namespace Business.Concrete
          {
              return _productDal.GetProductDetails();
          }
+
+         public void Add(Product product)
+         {
+             _productDal.Add(product);
+         }
+
+         public void Update(Product product)
+         {
+             _productDal.Update(product);
+         }
+
+         public void Delete(Product product)
+         {
+             _productDal.Delete(product);
+         }
     }
 }

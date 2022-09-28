@@ -11,6 +11,7 @@ namespace Business.Abstract
         void Add(Order order);
         void Update(Order order);
         void Delete(Order order);
-        
+        Order GetById(int orderId);
+
     }
 }

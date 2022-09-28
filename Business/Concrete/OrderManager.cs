@@ -35,5 +35,10 @@ namespace Business.Concrete
         {
             _orderDal.Delete(order);
         }
+
+        public Order GetById(int orderId)
+        {
+            return _orderDal.Get(p => p.OrderId == orderId);
+        }
     }
 }

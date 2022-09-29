@@ -10,6 +10,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 
 namespace WebAPI
 {
@@ -26,6 +30,17 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IProductService, ProductManager>();
+            services.AddSingleton<IProductDal, EfProductDal>();
+
+            services.AddSingleton<ICategoryService, CategoryManager>();
+            services.AddSingleton<ICategoryDal, EfCategoryDal>();
+
+            services.AddSingleton<ICustomerService, CustomerManager>();
+            services.AddSingleton<ICustomerDal, EfCustomerDal>();
+
+            services.AddSingleton<IOrderService, OrderManager>();
+            services.AddSingleton<IOrderDal, EfOrderDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

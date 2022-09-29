@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
 namespace WebAPI.Controllers
@@ -12,13 +15,19 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        IProductService _productService;
+
+        public ProductsController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         [HttpGet]
         public List<Product> Get()
         {
-            return new List<Product>
-            {
-                new Product {ProductId = 1, ProductName = "Elma"}
-            };
+            var result = _productService.GetAll();
+            return result.Data;
+
         }
     }
 }

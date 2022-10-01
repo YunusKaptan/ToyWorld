@@ -50,6 +50,8 @@ namespace Business.Concrete
              return new SuccessResult(Messages.ProductAdded);
          }
 
+
+         [ValidationAspect(typeof(ProductValidator))]
          public IResult Update(Product product)
          {
              _productDal.Update(product);

@@ -28,5 +28,7 @@ namespace Business.Constants
         public static string OrderUpdated = "Order updated";
 
         public static string MaintenanceTime = "System Maintenance Time!!";
+
+        public static string ProductImageAdded = "Product Image added !!";
     }
 }

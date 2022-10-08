@@ -27,6 +27,11 @@ namespace Business.Constants
         public static string OrderDeleted = "Order deleted";
         public static string OrderUpdated = "Order updated";
 
+        public static string UserAdded = "User successfully added";
+        public static string UserUpdated = "User successfully updated";
+        public static string UserDeleted = "User successfully deleted";
+        public static string UsersListed = "Users listed";
+
         public static string MaintenanceTime = "System Maintenance Time!!";
 
         public static string ProductImageAdded = "Product Image added !!";

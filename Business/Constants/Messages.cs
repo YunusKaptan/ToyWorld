@@ -35,5 +35,10 @@ namespace Business.Constants
         public static string MaintenanceTime = "System Maintenance Time!!";
 
         public static string ProductImageAdded = "Product Image added !!";
+
+        public static string AuthorizationDenied = "Authorization denied!!";
+
+
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -42,6 +43,7 @@ namespace Business.Concrete
              return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
          }
 
+         [SecuredOperation("product.add,admin")]
          [ValidationAspect(typeof(ProductValidator))]
          public IResult Add(Product product)
          {
@@ -50,8 +52,8 @@ namespace Business.Concrete
              return new SuccessResult(Messages.ProductAdded);
          }
 
-
-         [ValidationAspect(typeof(ProductValidator))]
+        [SecuredOperation("product.update,admin")]
+        [ValidationAspect(typeof(ProductValidator))]
          public IResult Update(Product product)
          {
              _productDal.Update(product);
@@ -59,7 +61,8 @@ namespace Business.Concrete
 
         }
 
-        public IResult Delete(Product product)
+         [SecuredOperation("product.delete,admin")]
+         public IResult Delete(Product product)
          {
              _productDal.Delete(product);
              return new SuccessResult(Messages.ProductDeleted);

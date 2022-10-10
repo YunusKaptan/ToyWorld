@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -28,12 +29,14 @@ namespace Business.Concrete
             return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == categoryId));
         }
 
+        [SecuredOperation("category.add,admin")]
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);
             return new SuccessResult(Messages.CategoryAdded);
         }
 
+        [SecuredOperation("category.update,admin")]
         public IResult Update(Category category)
         {
             _categoryDal.Update(category);
@@ -41,6 +44,7 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("category.delete,admin")]
         public IResult Delete(Category category)
         {
             _categoryDal.Delete(category);

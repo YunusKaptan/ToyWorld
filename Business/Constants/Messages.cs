@@ -32,6 +32,15 @@ namespace Business.Constants
         public static string UserDeleted = "User successfully deleted";
         public static string UsersListed = "Users listed";
 
+        public static string UserRegistered = "User registered...";
+        public static string UserNotFound = "User Not Found !!!";
+        public static string SuccessfulLogin = "Successful Login... ";
+        public static string UserAlreadyExists = "User Already Exists!!!";
+        public static string PasswordError = "Password Error!!!";
+        public static string AccessTokenCreated = "Access Token Created!!!";
+        
+
+
         public static string MaintenanceTime = "System Maintenance Time!!";
 
         public static string ProductImageAdded = "Product Image added !!";

@@ -5,6 +5,9 @@ using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
@@ -23,7 +26,7 @@ namespace Business.Concrete
          {
              _productDal = productDal;
          }
-
+        [CacheAspect]
          public IDataResult<List<Product>> GetAll()
          {
              return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
@@ -45,6 +48,7 @@ namespace Business.Concrete
 
          [SecuredOperation("product.add,admin")]
          [ValidationAspect(typeof(ProductValidator))]
+         [CacheRemoveAspect("IProductService.Get")]
          public IResult Add(Product product)
          {
 
@@ -54,7 +58,8 @@ namespace Business.Concrete
 
         [SecuredOperation("product.update,admin")]
         [ValidationAspect(typeof(ProductValidator))]
-         public IResult Update(Product product)
+        [CacheRemoveAspect("IProductService.Get")]
+        public IResult Update(Product product)
          {
              _productDal.Update(product);
              return new SuccessResult(Messages.ProductUpdated );
@@ -69,9 +74,17 @@ namespace Business.Concrete
 
         }
 
-        public IDataResult<Product> GetById(int productId)
+         [CacheAspect]
+         [PerformanceAspect(10)]
+         public IDataResult<Product> GetById(int productId)
          {
              return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
+         }
+
+         [TransactionScopeAspect]
+         public IResult AddTransactionalTest(Product product)
+         {
+             throw new NotImplementedException();
          }
     }
 }

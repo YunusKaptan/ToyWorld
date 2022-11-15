@@ -18,11 +18,23 @@ namespace DataAccess.Concrete.EntityFramework
                     join userOperationClaim in context.UserOperationClaims
                         on operationClaim.Id equals userOperationClaim.OperationClaimId
                     where userOperationClaim.UserId == user.Id
-                    select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
+                    select new OperationClaim {Id = operationClaim.Id, Name = operationClaim.Name};
                 return result.ToList();
 
             }
         }
+
+        //public new void Add(User user)
+        //{
+        //    using (var context = new ToyWorldContext())
+        //    {
+        //        user ekleyecen
+        //        yetkilerini ekleyecen
+        //        transaction icinde yap
+
+        //    }
+        //}
+
     }
 
 }

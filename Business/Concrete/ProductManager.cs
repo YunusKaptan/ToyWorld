@@ -86,5 +86,10 @@ namespace Business.Concrete
          {
              throw new NotImplementedException();
          }
+
+         public IDataResult<List<ProductDetailDto>> GetProductDetailsByProductId(int productId)
+         {
+             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailsByProductId(productId));
+         }
     }
 }

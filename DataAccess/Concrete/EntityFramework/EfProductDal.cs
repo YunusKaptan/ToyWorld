@@ -30,5 +30,21 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+        public List<ProductDetailDto> GetProductDetailsByProductId(int productId)
+        {
+            using (ToyWorldContext context = new ToyWorldContext())
+            {
+                var result = from c in context.Products
+                    join b in context.Categories
+                        on c.CategoryId equals b.CategoryId
+                    where c.ProductId == productId
+                    select new ProductDetailDto()
+                    {
+                        ProductId = c.ProductId,
+                        CategoryName = b.CategoryName
+                    };
+                return result.ToList();
+            }
+        }
     }
 }

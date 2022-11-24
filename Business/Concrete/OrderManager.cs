@@ -6,6 +6,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -46,6 +47,11 @@ namespace Business.Concrete
         public IDataResult<Order> GetById(int orderId)
         {
             return new SuccessDataResult<Order>(_orderDal.Get(p => p.OrderId == orderId));
+        }
+
+        public IDataResult<List<OrderDetailDto>> GetOrdersDetails()
+        {
+            return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrdersDetails());
         }
     }
 }

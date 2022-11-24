@@ -20,8 +20,6 @@ namespace DataAccess.Concrete.EntityFramework
                         on p.CategoryId equals c.CategoryId
                     join or in context.Orders
                         on p.ProductId equals or.ProductId
-                    //join cus in context.Customers
-                    //    on 
                     from u in context.Users
                     join cu in context.Customers
                         on u.Id equals cu.UserId

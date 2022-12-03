@@ -25,7 +25,9 @@ namespace DataAccess.Concrete.EntityFramework
                         ProductId = p.ProductId,
                         ProductName = p.ProductName,
                         CategoryName = c.CategoryName,
-                        UnitsInStock = p.UnitsInStock
+                        UnitsInStock = p.UnitsInStock,
+                        ImagePath = (from m in context.ProductImages 
+                            where m.ProductId==p.ProductId select m.ImagePath).FirstOrDefault()  
                     };
                 return result.ToList();
             }
@@ -41,10 +43,34 @@ namespace DataAccess.Concrete.EntityFramework
                     select new ProductDetailDto()
                     {
                         ProductId = c.ProductId,
-                        CategoryName = b.CategoryName
+                        CategoryName = b.CategoryName,
+                        ImagePath = (from m in context.ProductImages
+                            where m.ProductId == c.ProductId select m.ImagePath).FirstOrDefault()
+
                     };
                 return result.ToList();
             }
         }
+        public List<ProductDetailDto> GetProductDetailsByCategoryId(int categoryId)
+        {
+            using (ToyWorldContext context = new ToyWorldContext())
+            {
+                var result = from c in context.Products
+                    join b in context.Categories
+                        on c.CategoryId equals b.CategoryId
+                    where c.CategoryId == categoryId
+                    select new ProductDetailDto()
+                    {
+                        ProductId = c.ProductId,
+                        CategoryName = b.CategoryName,
+                        ImagePath = (from m in context.ProductImages
+                            where m.ProductId == c.ProductId
+                            select m.ImagePath).FirstOrDefault()
+
+                    };
+                return result.ToList();
+            }
+        }
+
     }
 }

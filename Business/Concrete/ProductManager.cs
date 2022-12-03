@@ -91,5 +91,10 @@ namespace Business.Concrete
          {
              return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailsByProductId(productId));
          }
+
+         public IDataResult<List<ProductDetailDto>> GetProductDetailsByCategoryId(int categoryId)
+         {
+             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailsByCategoryId(categoryId));
+         }
     }
 }

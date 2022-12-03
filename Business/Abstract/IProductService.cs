@@ -18,6 +18,8 @@ namespace Business.Abstract
         IDataResult<Product> GetById(int productId);
         IResult AddTransactionalTest(Product product);
         IDataResult<List<ProductDetailDto>> GetProductDetailsByProductId(int productId);
+        IDataResult<List<ProductDetailDto>> GetProductDetailsByCategoryId(int categoryId);
+
 
     }
 }

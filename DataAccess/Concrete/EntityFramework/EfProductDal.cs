@@ -36,16 +36,18 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (ToyWorldContext context = new ToyWorldContext())
             {
-                var result = from c in context.Products
-                    join b in context.Categories
-                        on c.CategoryId equals b.CategoryId
-                    where c.ProductId == productId
+                var result = from p in context.Products
+                    join c in context.Categories
+                        on p.CategoryId equals c.CategoryId
+                             where p.ProductId == productId
                     select new ProductDetailDto()
                     {
-                        ProductId = c.ProductId,
-                        CategoryName = b.CategoryName,
+                        ProductId = p.ProductId,
+                        ProductName = p.ProductName,
+                        CategoryName = c.CategoryName,
+                        UnitsInStock = p.UnitsInStock,
                         ImagePath = (from m in context.ProductImages
-                            where m.ProductId == c.ProductId select m.ImagePath).FirstOrDefault()
+                            where m.ProductId == p.ProductId select m.ImagePath).FirstOrDefault()
 
                     };
                 return result.ToList();
@@ -55,16 +57,18 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (ToyWorldContext context = new ToyWorldContext())
             {
-                var result = from c in context.Products
-                    join b in context.Categories
-                        on c.CategoryId equals b.CategoryId
-                    where c.CategoryId == categoryId
+                var result = from p in context.Products
+                    join c in context.Categories
+                        on p.CategoryId equals c.CategoryId
+                             where c.CategoryId == categoryId
                     select new ProductDetailDto()
                     {
-                        ProductId = c.ProductId,
-                        CategoryName = b.CategoryName,
+                        ProductId = p.ProductId,
+                        ProductName = p.ProductName,
+                        CategoryName = c.CategoryName,
+                        UnitsInStock = p.UnitsInStock,
                         ImagePath = (from m in context.ProductImages
-                            where m.ProductId == c.ProductId
+                            where m.ProductId == p.ProductId
                             select m.ImagePath).FirstOrDefault()
 
                     };

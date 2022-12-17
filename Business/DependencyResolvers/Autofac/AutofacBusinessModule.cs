@@ -27,6 +27,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<OrderManager>().As<IOrderService>().SingleInstance();
             builder.RegisterType<EfOrderDal>().As<IOrderDal>().SingleInstance();
 
+            builder.RegisterType<PurchaseManager>().As<IPurchaseService>().SingleInstance();
+            builder.RegisterType<EfPurchaseDal>().As<IPurchaseDal>().SingleInstance();
+
             builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
             builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance();
 

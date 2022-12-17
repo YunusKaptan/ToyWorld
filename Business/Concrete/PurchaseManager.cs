@@ -62,7 +62,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.PurchaseDeleted);
         }
 
-        public IResult IsProductAvaible(int productId)
+        public IResult IsProductAvailable(int productId)
         {
             var result = _purchaseDal.GetAll(r => r.ProductId == productId).Any();
             if (result)

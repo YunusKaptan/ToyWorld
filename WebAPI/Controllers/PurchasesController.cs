@@ -86,9 +86,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet("isproductavaible")]
-        public IActionResult IsProductAvaible(int productId)
+        public IActionResult IsProductAvailable(int productId)
         {
-            var result = _purchaseService.IsProductAvaible(productId);
+            var result = _purchaseService.IsProductAvailable(productId);
             if (result.Success)
             {
                 return Ok(result);

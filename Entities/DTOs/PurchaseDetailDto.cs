@@ -6,7 +6,7 @@ namespace Entities.DTOs
 {
     public class PurchaseDetailDto
     {
-        public int OrderId { get; set; }
+        public int Id { get; set; }
         public int CategoryId { get; set; }
 
         public int ProductId { get; set; }
@@ -17,6 +17,6 @@ namespace Entities.DTOs
         public string PostAddress { get; set; }
 
         public string CustomerLastname { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime PurchaseDate { get; set; }
     }
 }

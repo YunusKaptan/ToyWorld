@@ -15,7 +15,7 @@ namespace Business.Abstract
         IResult Add(Purchase purchase);
         IResult Update(Purchase purchase);
         IResult Delete(Purchase purchase);
-        IResult IsProductAvaible(int productId);
+        IResult IsProductAvailable(int productId);
 
 
 

@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
-        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Purchase> Purchase { get; set; }
 
 
     }

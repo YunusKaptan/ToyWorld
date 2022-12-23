@@ -18,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
                 var result = from p in context.Products
                     join c in context.Categories
                         on p.CategoryId equals c.CategoryId
-                    join or in context.Purchases
+                    join or in context.Purchase
                         on p.ProductId equals or.ProductId
                     from u in context.Users
                     join cu in context.Customers

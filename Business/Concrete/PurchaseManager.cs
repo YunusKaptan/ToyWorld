@@ -17,14 +17,11 @@ namespace Business.Concrete
     public class PurchaseManager:IPurchaseService
     {
         private IPurchaseDal _purchaseDal;
-        private IProductDal _productDal;
 
-        private IPurchaseService _purchaseService;
 
-        public PurchaseManager(IPurchaseService purchaseService, IProductDal productDal)
+        public PurchaseManager(IPurchaseDal purchaseDal)
         {
-            _purchaseService = purchaseService;
-            _productDal = productDal;
+            _purchaseDal = purchaseDal;
         }
 
         public IDataResult<List<Purchase>> GetAll()

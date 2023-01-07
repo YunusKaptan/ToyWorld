@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
@@ -13,55 +14,55 @@ using DataAccess.Abstract;
 namespace Business.Concrete
 {
     public class UserManager : IUserService
+    {
+        private IUserDal _userDal;
+
+        public UserManager(IUserDal userDal)
         {
-            private IUserDal _userDal;
-
-            public UserManager(IUserDal userDal)
-            {
-                _userDal = userDal;
-            }
-
-            public List<OperationClaim> GetClaims(User user)
-            {
-                return _userDal.GetClaims(user);
-            }
-
-            public IDataResult<List<User>> GetAll()
-            {
-                return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
-            }
-
-            public IDataResult<List<User>> GetUserById(int id)
-            {
-                return new SuccessDataResult<List<User>>(_userDal.GetAll(p => p.Id == id), Messages.UsersListed);
-
-            }
-
-            public User GetByMail(string email)
-            {
-                return _userDal.Get(u => u.EMail == email);
-            }
-
-            [ValidationAspect(typeof(UserValidator))]
-            public IResult Add(User user)
-            {
-                ValidationTool.Validate(new UserValidator(), user);
-
-                _userDal.Add(user);
-                return new SuccessResult(Messages.UserAdded);
-            }
-
-            [ValidationAspect(typeof(UserValidator))]
-            public IResult Update(User user)
-            {
-                _userDal.Update(user);
-                return new SuccessResult(Messages.UserUpdated);
-            }
-
-            public IResult Delete(User user)
-            {
-                _userDal.Delete(user);
-                return new SuccessResult(Messages.UserDeleted);
-            }
+            _userDal = userDal;
         }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
+
+        //public IDataResult<List<User>> GetAll()
+        //{
+        //    return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
+        //}
+
+        //public IDataResult<List<User>> GetUserById(int id)
+        //{
+        //    return new SuccessDataResult<List<User>>(_userDal.GetAll(p => p.Id == id), Messages.UsersListed);
+
+        //}
+
+        public IDataResult<User> GetByMail(string email)
+        {
+            return new SuccessDataResult<User>(_userDal.GetAll(u => u.EMail == email).FirstOrDefault());
+        }
+
+        [ValidationAspect(typeof(UserValidator))]
+        public IResult Add(User user)
+        {
+            ValidationTool.Validate(new UserValidator(), user);
+
+            _userDal.Add(user);
+            return new SuccessResult(Messages.UserAdded);
+        }
+
+        //[ValidationAspect(typeof(UserValidator))]
+        //public IResult Update(User user)
+        //{
+        //    _userDal.Update(user);
+        //    return new SuccessResult(Messages.UserUpdated);
+        //}
+
+        //public IResult Delete(User user)
+        //{
+        //    _userDal.Delete(user);
+        //    return new SuccessResult(Messages.UserDeleted);
+        //}
+    }
 }

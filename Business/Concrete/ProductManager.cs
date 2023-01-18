@@ -66,7 +66,7 @@ namespace Business.Concrete
 
         }
 
-         [SecuredOperation("product.delete,admin")]
+             [SecuredOperation("product.delete,admin")]
          public IResult Delete(Product product)
          {
              _productDal.Delete(product);

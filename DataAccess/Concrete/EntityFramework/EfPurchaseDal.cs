@@ -31,8 +31,8 @@ namespace DataAccess.Concrete.EntityFramework
                         CategoryName = c.CategoryName,
                         Id = or.Id,
                         PurchaseDate = or.PurchaseDate,
-                        CustomerName = u.FirstName,
-                        CustomerLastname = u.LastName,
+                        FirstName = u.FirstName,
+                        LastName = u.LastName,
                         Email = cu.Email,
                         PostAddress = cu.PostAddress
                     };

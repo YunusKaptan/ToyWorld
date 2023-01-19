@@ -39,10 +39,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<PurchaseDetailDto>>(_purchaseDal.GetPurchaseDetails());
         }
 
-        [ValidationAspect(typeof(PurchaseValidator))]
         public IResult Add(Purchase purchase)
         {
-            ValidationTool.Validate(new PurchaseValidator(), purchase);
             _purchaseDal.Add(purchase);
             return new SuccessResult(Messages.PurchaseAdded);
         }

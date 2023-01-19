@@ -27,10 +27,10 @@ namespace Business.Concrete
             return _userDal.GetClaims(user);
         }
 
-        //public IDataResult<List<User>> GetAll()
-        //{
-        //    return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
-        //}
+        public IDataResult<List<User>> GetAll()
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
+        }
 
         //public IDataResult<List<User>> GetUserById(int id)
         //{
@@ -50,6 +50,11 @@ namespace Business.Concrete
 
             _userDal.Add(user);
             return new SuccessResult(Messages.UserAdded);
+        }
+
+        public IDataResult<User> GetUserById(int id)
+        {
+            return new SuccessDataResult<User>(_userDal.GetAll(u => u.Id == id).FirstOrDefault());
         }
 
         //[ValidationAspect(typeof(UserValidator))]

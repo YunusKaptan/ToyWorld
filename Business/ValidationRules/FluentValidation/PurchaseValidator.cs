@@ -10,9 +10,6 @@ namespace Business.ValidationRules.FluentValidation
     {
         public PurchaseValidator()
         {
-            RuleFor(p => p.PurchaseDate).NotEmpty();
-            RuleFor(p => p.ProductId).NotEmpty();
-            RuleFor(p => p.CustomerId).NotEmpty();
 
         }
     }

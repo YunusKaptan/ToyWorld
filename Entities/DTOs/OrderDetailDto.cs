@@ -11,12 +11,12 @@ namespace Entities.DTOs
 
         public int ProductId { get; set; }
         public int CustomerId { get; set; }
-        public string CustomerName { get; set; }
+        public string UserName { get; set; }
         public string CategoryName { get; set; }
         public string Email { get; set; }
         public string PostAddress { get; set; }
 
-        public string CustomerLastname { get; set; }
+        public string UserLastname { get; set; }
         public DateTime OrderDate { get; set; }
 
     }

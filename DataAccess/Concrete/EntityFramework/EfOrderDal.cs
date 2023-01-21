@@ -21,20 +21,18 @@ namespace DataAccess.Concrete.EntityFramework
                     join or in context.Orders
                         on p.ProductId equals or.ProductId
                     from u in context.Users
-                    join cu in context.Customers
-                        on u.Id equals cu.UserId
+                    join cu in context.Users
+                        on u.Id equals cu.Id
                     select new OrderDetailDto()
                     {
 
                         ProductId = p.ProductId,
-                        CategoryId = c.CategoryId,
                         CategoryName = c.CategoryName,
                         OrderId = or.OrderId,
                         OrderDate = or.OrderDate,
-                        CustomerName = u.FirstName,
-                        CustomerLastname = u.LastName,
-                        Email=cu.Email,
-                        PostAddress = cu.PostAddress
+                        UserName = u.FirstName,
+                        UserLastname = u.LastName,
+                        Email=cu.EMail
                     };
                 return result.ToList();
             }
